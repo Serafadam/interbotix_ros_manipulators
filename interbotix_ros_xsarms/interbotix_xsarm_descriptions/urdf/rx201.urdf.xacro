@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rx201">
+
+  <xacro:arg name="robot_name" default = "rx201"/>
+  <xacro:arg name="base_link_frame" default="base_link"/>
+  <xacro:arg name="show_ar_tag" default="false"/>
+  <xacro:arg name="show_gripper_bar" default="true"/>
+  <xacro:arg name="show_gripper_fingers" default="true"/>
+  <xacro:arg name="use_world_frame" default="false"/>
+  <xacro:arg name="external_urdf_loc" default=""/>
+  <xacro:arg name="load_gazebo_configs" default="false"/>
+  <xacro:property name="urdf_loc" value="$(arg external_urdf_loc)"/>
+  <xacro:property name="pi_offset" value="0.00001"/>
+  <xacro:if value="$(arg use_world_frame)">
+    <link name="map"/>
+    <joint name="fixed" type="fixed">
+      <parent link="map"/>
+      <child link="$(arg robot_name)/$(arg base_link_frame)"/>
+    </joint>
+  </xacro:if>
+  <link
+    name="$(arg robot_name)/$(arg base_link_frame)">
+    <inertial>
+      <origin
+        xyz="5.78741335441198E-07 -0.0325292023706559 -7.58548593799006E-07"
+        rpy="0 ${-pi/2} 0 " />
+      <mass
+        value="0.097038291965669" />
+      <inertia
+        ixx="0.00021620107836659"
+        ixy="-2.89801867490186E-10"
+        ixz="-1.7066046564796E-09"
+        iyy="0.000383757318118765"
+        iyz="1.29703370470684E-09"
+        izz="0.000216200939904758" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="${-pi/2} 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_1_base.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.188235294117647 0.231372549019608 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="${-pi/2} 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_1_base.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="$(arg robot_name)/shoulder_link">
+    <inertial>
+      <origin
+        xyz="0.000112176221657912 -4.64646352460254E-05 0.0194231369380871"
+        rpy="0 0 0" />
+      <mass
+        value="0.149424500206782" />
+      <inertia
+        ixx="7.08157449431556E-05"
+        ixy="5.47322634495802E-21"
+        ixz="4.58288932494354E-20"
+        iyy="7.33947781680689E-05"
+        iyz="9.89084419421983E-21"
+        izz="0.000112098899977407" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_2_shoulder.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.266666666666667 0.588235294117647 0.282352941176471 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_2_shoulder.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="waist" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="8" lower="${-pi + pi_offset}" upper="${pi - pi_offset}" velocity="${pi}"/>
+    <origin rpy="0 0 0" xyz="0 0 0.06566"/>
+    <parent link="$(arg robot_name)/$(arg base_link_frame)"/>
+    <child link="$(arg robot_name)/shoulder_link"/>
+    <dynamics friction="0.1"/>
+  </joint>
+
+  <transmission name="trans_waist">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="waist">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="waist_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="$(arg robot_name)/upper_arm_link">
+    <inertial>
+      <origin
+        xyz="0.000140179174310019 -0.00978108281728311 0.135285663487031"
+        rpy="0 0 0" />
+      <mass
+        value="0.208203031829544" />
+      <inertia
+        ixx="0.00117014135558755"
+        ixy="-1.10981507046839E-07"
+        ixz="1.76409907568088E-07"
+        iyy="0.0011213331014271"
+        iyz="0.000129084142737449"
+        izz="8.86412369441377E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_3_upper_arm.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.768627450980392 0.207843137254902 0.152941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_3_upper_arm.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="18" lower="${radians(-108)}" upper="${radians(113)}" velocity="1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.03891"/>
+    <parent link="$(arg robot_name)/shoulder_link"/>
+    <child link="$(arg robot_name)/upper_arm_link"/>
+    <dynamics friction="0.1"/>
+  </joint>
+
+  <transmission name="trans_shoulder">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="shoulder_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link
+    name="$(arg robot_name)/forearm_link">
+    <inertial>
+      <origin
+        xyz="0.00015335898729739 -0.117838065124325 -0.000659998158308583"
+        rpy="0 0 0" />
+      <mass
+        value="0.1854429342037" />
+      <inertia
+        ixx="0.000717462865516599"
+        ixy="1.62510980366983E-11"
+        ixz="2.19508599311596E-11"
+        iyy="3.79233501536866E-05"
+        iyz="-3.3693628003252E-11"
+        izz="0.000728821951880921" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_4_forearm.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.909803921568627 0.67843137254902 0.137254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_4_forearm.stl" />
+      </geometry>
+    </collision>
+  </link>
+    <joint name="elbow" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="13" lower="${radians(-108)}" upper="${radians(93)}" velocity="${pi}"/>
+    <origin rpy="0 0 0" xyz="0 -0.049937733675976 0.200221004293106"/>
+    <parent link="$(arg robot_name)/upper_arm_link"/>
+    <child link="$(arg robot_name)/forearm_link"/>
+    <dynamics friction="0.1"/>
+  </joint>
+
+  <transmission name="trans_elbow">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="elbow_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link
+    name="$(arg robot_name)/wrist_link">
+    <inertial>
+      <origin
+        xyz="0.00144826555033376 -0.0414765304637691 0.000809836034455225"
+        rpy="0 0 0" />
+      <mass
+        value="0.0558618443997172" />
+      <inertia
+        ixx="1.5513824378065E-05"
+        ixy="-7.36792283927694E-20"
+        ixz="1.76604941458683E-20"
+        iyy="1.0000871940928E-05"
+        iyz="5.34280856094087E-07"
+        izz="1.48276300409588E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_5_wrist.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_5_wrist.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist_angle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="5" lower="${radians(-100)}" upper="${radians(123)}" velocity="${pi}"/>
+    <origin rpy="0 0 0" xyz="0 -0.200062272676885 -0.000660000000000605"/>
+    <parent link="$(arg robot_name)/forearm_link"/>
+    <child link="$(arg robot_name)/wrist_link"/>
+    <dynamics friction="0.1"/>
+  </joint>
+
+  <transmission name="trans_wrist_angle">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist_angle">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wrist_angle_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="$(arg robot_name)/gripper_link">
+    <inertial>
+      <origin
+        xyz="-1.0118316774721E-15 -0.0340706152664176 -0.000661958535275398"
+        rpy="0 0 0" />
+      <mass
+        value="0.0412074186097806" />
+      <inertia
+        ixx="1.07195823625262E-05"
+        ixy="-1.86918046457122E-21"
+        ixz="1.3133039787675E-20"
+        iyy="1.56950384148275E-05"
+        iyz="8.05025078982935E-07"
+        izz="1.86680792090178E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_6_gripper.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://interbotix_xsarm_descriptions/meshes/rx201_meshes/rx201_6_gripper.stl" />
+      </geometry>
+    </collision>
+  </link>
+    <joint name="wrist_rotate" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1" lower="${radians(-100)}" upper="${radians(100)}" velocity="${pi}"/>
+    <origin rpy="3.1416 0 3.1416" xyz="0.00015336 -0.0542 0"/>
+    <parent link="$(arg robot_name)/wrist_link"/>
+    <child link="$(arg robot_name)/gripper_link"/>
+    <dynamics friction="0.1"/>
+  </joint>
+
+  <transmission name="trans_wrist_rotate">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist_rotate">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wrist_rotate_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>

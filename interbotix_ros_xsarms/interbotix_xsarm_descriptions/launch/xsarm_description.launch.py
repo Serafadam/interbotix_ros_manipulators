@@ -7,7 +7,6 @@ from launch.substitutions import (
 )
 from launch.conditions import IfCondition
 from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
 from launch.actions import DeclareLaunchArgument
 from ament_index_python.packages import get_package_share_directory
 
@@ -95,7 +94,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "use_joint_pub",
-            default_value="true",
+            default_value="false",
             description="launches the joint_state_publisher node",
         )
     )

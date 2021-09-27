@@ -15,7 +15,7 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <depend>interbotix_xs_sdk</depend>
-  <depend>interbotix_xs_modules</depend>
+  <!-- <depend>interbotix_xs_modules</depend> -->
   <depend>interbotix_xsarm_descriptions</depend>
 
   <!-- The export tag contains other, unspecified, tags -->

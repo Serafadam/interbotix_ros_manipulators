@@ -87,3 +87,7 @@ repositories:
     type: git
     url: https://github.com/ros-controls/realtime_tools.git
     version: ros2_devel
+  control_msgs:
+    type: git
+    url: https://github.com/ros-controls/control_msgs.git
+    version: galactic-devel

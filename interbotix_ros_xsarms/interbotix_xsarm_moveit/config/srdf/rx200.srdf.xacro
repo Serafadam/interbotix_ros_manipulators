@@ -65,6 +65,7 @@
         <joint name="left_finger" value="0.0195" />
         <joint name="right_finger" value="-0.0195" />
     </group_state>
+    <virtual_joint name="$(arg robot_name)fixed_base" type="fixed" parent_frame="map" child_link="world" />
     <end_effector name="interbotix_gripper" parent_link="$(arg robot_name)/ee_gripper_link" group="interbotix_gripper" />
     <disable_collisions link1="$(arg robot_name)/$(arg base_link_frame)" link2="$(arg robot_name)/shoulder_link" reason="Adjacent" />
     <disable_collisions link1="$(arg robot_name)/forearm_link" link2="$(arg robot_name)/gripper_bar_link" reason="Never" />

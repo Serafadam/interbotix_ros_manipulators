@@ -193,22 +193,22 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "motor_configs",
             default_value='""',
-            description="file path to the robot-specific URDF including arguments to be passed in",
+            description="the file path to the 'motor config' YAML file",
         ),
         DeclareLaunchArgument(
             "mode_configs",
             default_value='""',
-            description="file path to the robot-specific URDF including arguments to be passed in",
+            description="the file path to the 'mode config' YAML file",
         ),
         DeclareLaunchArgument(
             "load_configs",
             default_value="true",
-            description="file path to the robot-specific URDF including arguments to be passed in",
+            description="a boolean that specifies whether or not the initial register values (under the 'motors' heading) in a Motor Config file should be written to the motors; as the values being written are stored in each motor's EEPROM (which means the values are retained even after a power cycle), this can be set to false after the first time using the robot. Setting to false also shortens the node startup time by a few seconds and preserves the life of the EEPROM",
         ),
         DeclareLaunchArgument(
             "use_sim",
             default_value="false",
-            description="file path to the robot-specific URDF including arguments to be passed in",
+            description="if true, the Dynamixel simulator node is run; use Rviz to visualize the robot's motion; if false, the real Dynamixel driver node is run",
         ),
         OpaqueFunction(function = launch_setup)
         ])

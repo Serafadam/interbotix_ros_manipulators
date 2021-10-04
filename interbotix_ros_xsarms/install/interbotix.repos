@@ -79,3 +79,11 @@ repositories:
     type: git
     url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git   
     version: ros2
+  resource_retriever:
+    type: git
+    url: https://github.com/ros/resource_retriever.git
+    version: ros2
+  realtime_tools:
+    type: git
+    url: https://github.com/ros-controls/realtime_tools.git
+    version: ros2_devel

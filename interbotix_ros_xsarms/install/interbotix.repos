@@ -1,5 +1,5 @@
 repositories:
-  urdf_parser_py
+  urdf_parser_py:
     type: git
     url: https://github.com/ros/urdf_parser_py.git
     version: ros2
@@ -27,7 +27,7 @@ repositories:
     type: git
     url: https://github.com/ros-controls/control_toolbox.git
     version: ros2-master
-  random_numbers
+  random_numbers:
     type: git
     url: https://github.com/ros-planning/random_numbers.git
     version: ros2
@@ -71,7 +71,7 @@ repositories:
     type: git
     url: https://github.com/Serafadam/interbotix_ros_core.git
     version: ros2-galactic
-  dynamixel-workbench:
+  dynamixel_workbench:
     type: git
     url: https://github.com/ROBOTIS-GIT/dynamixel-workbench.git 
     version: ros2
@@ -79,4 +79,3 @@ repositories:
     type: git
     url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git   
     version: ros2
-    

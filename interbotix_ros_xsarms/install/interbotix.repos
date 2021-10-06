@@ -53,8 +53,8 @@ repositories:
     version: ros2
   warehouse_ros_mongo:
     type: git
-    url: https://github.com/ros-planning/warehouse_ros_mongo
-    version: ros2
+    url: https://github.com/Serafadam/warehouse_ros_mongo.git
+    version: boost_linking
   ros2_control:
     type: git
     url: https://github.com/ros-controls/ros2_control
@@ -91,3 +91,7 @@ repositories:
     type: git
     url: https://github.com/ros-controls/control_msgs.git
     version: galactic-devel
+  octomap:
+    type: git
+    url: https://github.com/OctoMap/octomap.git
+    version: ros2

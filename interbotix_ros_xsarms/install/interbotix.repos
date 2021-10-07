@@ -96,6 +96,6 @@ repositories:
     url: https://github.com/OctoMap/octomap.git
     version: ros2
   urdf:
-    type:git
+    type: git
     url: https://github.com/ros2/urdf.git
     version: ros2

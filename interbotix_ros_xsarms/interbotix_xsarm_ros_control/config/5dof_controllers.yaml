@@ -1,7 +1,7 @@
 /rx200:
   controller_manager:
     ros__parameters:
-      update_rate: 50  # Hz
+      update_rate: 10  # Hz
       arm_controller:
         type: joint_trajectory_controller/JointTrajectoryController
       gripper_controller:
@@ -22,6 +22,11 @@
         - position
       state_interfaces:
         - position
+      state_publish_rate: 10.0 # Defaults to 50
+      action_monitor_rate: 20.0 # Defaults to 20
+      constraints:
+        stopped_velocity_tolerance: 0.02
+        goal_time: 1.0
 /rx200:
   gripper_controller:
     ros__parameters:

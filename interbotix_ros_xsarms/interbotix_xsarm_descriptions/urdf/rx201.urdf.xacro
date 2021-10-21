@@ -110,16 +110,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_waist">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="waist">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="waist_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
   <link
     name="$(arg robot_name)/upper_arm_link">
     <inertial>
@@ -169,15 +159,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_shoulder">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="shoulder_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
   <link
     name="$(arg robot_name)/forearm_link">
     <inertial>
@@ -227,15 +208,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_elbow">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="elbow">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="elbow_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
   <link
     name="$(arg robot_name)/wrist_link">
     <inertial>
@@ -284,16 +256,6 @@
     <child link="$(arg robot_name)/wrist_link"/>
     <dynamics friction="0.1"/>
   </joint>
-
-  <transmission name="trans_wrist_angle">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_angle">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_angle_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
   <link
     name="$(arg robot_name)/gripper_link">
@@ -344,13 +306,51 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_wrist_rotate">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_rotate">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+
+    <ros2_control name="XSHardwareInterface" type="system">
+    <hardware>
+      <plugin>interbotix_xs_ros_control/XSHardwareInterface</plugin>
+    </hardware>
+
+    <joint name="waist">
+      <command_interface name="position">
+        <param name="min">"${-pi + pi_offset}"</param>
+        <param name="max">"${pi - pi_offset}"</param>
+      </command_interface>
+      <state_interface name="position"/>
     </joint>
-    <actuator name="wrist_rotate_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+
+    <joint name="shoulder">
+      <command_interface name="position">
+        <param name="min">"${radians(-108)}"</param>
+        <param name="max">"${radians(113)}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="elbow">
+      <command_interface name="position">
+        <param name="min">"${radians(-108)}"</param>
+        <param name="max">"${radians(93)}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="wrist_angle">
+      <command_interface name="position">
+        <param name="min">"${radians(-100)}"</param>
+        <param name="max">"${radians(123)}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="wrist_rotate">
+      <command_interface name="position">
+        <param name="min">"${-pi + pi_offset}"</param>
+        <param name="max">"${pi - pi_offset}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+  </ros2_control>
 </robot>

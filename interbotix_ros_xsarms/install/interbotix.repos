@@ -1,0 +1,101 @@
+repositories:
+  urdf_parser_py:
+    type: git
+    url: https://github.com/ros/urdf_parser_py.git
+    version: ros2
+  srfdom:
+    type: git
+    url: https://github.com/ros-planning/srdfdom.git 
+    version: ros2
+  ruckig:
+    type: git
+    url: https://github.com/pantor/ruckig.git 
+    version: master
+  octomap_msgs:
+    type: git
+    url: https://github.com/OctoMap/octomap_msgs.git
+    version: ros2
+  object_recognition_msgs:
+    type: git
+    url: https://github.com/wg-perception/object_recognition_msgs.git 
+    version: ros2
+  moveit_msgs:
+    type: git
+    url: https://github.com/ros-planning/moveit_msgs.git 
+    version: ros2
+  control_toolbox:
+    type: git
+    url: https://github.com/ros-controls/control_toolbox.git
+    version: ros2-master
+  random_numbers:
+    type: git
+    url: https://github.com/ros-planning/random_numbers.git
+    version: ros2
+  eigen_stl_containers:
+    type: git
+    url: https://github.com/ros/eigen_stl_containers.git 
+    version: ros2
+  moveit2:
+    type: git
+    url: https://github.com/ros-planning/moveit2.git 
+    version: main
+  geometric_shapes:
+    type: git
+    url: https://github.com/ros-planning/geometric_shapes
+    version: ros2
+  moveit_resources:
+    type: git
+    url: https://github.com/ros-planning/moveit_resources
+    version: ros2
+  warehouse_ros:
+    type: git
+    url: https://github.com/ros-planning/warehouse_ros
+    version: ros2
+  warehouse_ros_mongo:
+    type: git
+    url: https://github.com/Serafadam/warehouse_ros_mongo.git
+    version: boost_linking
+  ros2_control:
+    type: git
+    url: https://github.com/ros-controls/ros2_control
+    version: 0.8.0
+  ros2_controllers:
+    type: git
+    url: https://github.com/ros-controls/ros2_controllers
+    version: 0.5.0
+  interbotix_ros_toolboxes:
+    type: git
+    url: https://github.com/Serafadam/interbotix_ros_toolboxes.git
+    version: galactic
+  interbotix_ros_core:
+    type: git
+    url: https://github.com/Serafadam/interbotix_ros_core.git
+    version: ros2-galactic
+  dynamixel_workbench:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/dynamixel-workbench.git 
+    version: ros2
+  dynamixel_sdk:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git   
+    version: ros2
+  resource_retriever:
+    type: git
+    url: https://github.com/ros/resource_retriever.git
+    version: ros2
+  realtime_tools:
+    type: git
+    url: https://github.com/ros-controls/realtime_tools.git
+    version: ros2_devel
+  control_msgs:
+    type: git
+    url: https://github.com/ros-controls/control_msgs.git
+    version: galactic-devel
+  octomap:
+    type: git
+    url: https://github.com/OctoMap/octomap.git
+    version: ros2
+  urdf:
+    type: git
+    url: https://github.com/ros2/urdf.git
+    version: ros2

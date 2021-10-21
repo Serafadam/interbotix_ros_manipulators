@@ -59,16 +59,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_waist">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="waist">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="waist_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
   <link name="$(arg robot_name)/shoulder_link">
     <visual>
       <origin rpy="0 0 ${-pi/2}" xyz="0 0 0.0015"/>
@@ -99,15 +89,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_shoulder">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="shoulder_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
   <link name="$(arg robot_name)/upper_arm_link">
     <visual>
@@ -139,16 +120,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_elbow">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="elbow">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="elbow_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
   <link name="$(arg robot_name)/forearm_link">
     <visual>
       <origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
@@ -179,15 +150,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_wrist_angle">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_angle">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_angle_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
   <link name="$(arg robot_name)/wrist_link">
     <visual>
@@ -219,15 +181,7 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_wrist_rotate">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_rotate">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_rotate_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+
 
   <link name="$(arg robot_name)/gripper_link">
     <visual>
@@ -273,15 +227,6 @@
     <dynamics friction="0.1"/>
   </joint>
 
-  <transmission name="trans_gripper">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="gripper">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="gripper_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
   <link name="$(arg robot_name)/gripper_prop_link">
     <visual>
@@ -397,16 +342,6 @@
         <dynamics friction="0.1"/>
       </joint>
 
-      <transmission name="trans_left_finger">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="left_finger">
-          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="left_finger_motor">
-          <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-      </transmission>
-
       <link name="$(arg robot_name)/left_finger_link">
         <visual>
           <origin rpy="${pi} ${pi} 0" xyz="0 0.005 0"/>
@@ -439,16 +374,6 @@
           <mimic joint="left_finger" multiplier="-1" offset="0"/>
         </xacro:unless>
       </joint>
-
-      <transmission name="trans_right_finger">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="right_finger">
-          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="right_finger_motor">
-          <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-      </transmission>
 
       <link name="$(arg robot_name)/right_finger_link">
         <visual>
@@ -493,4 +418,58 @@
     <xacro:include filename="${urdf_loc}"/>
   </xacro:if>
 
+  <ros2_control name="XSHardwareInterface" type="system">
+    <hardware>
+      <plugin>interbotix_xs_ros_control/XSHardwareInterface</plugin>
+    </hardware>
+
+    <joint name="waist">
+      <command_interface name="position">
+        <param name="min">"${-pi + pi_offset}"</param>
+        <param name="max">"${pi - pi_offset}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="shoulder">
+      <command_interface name="position">
+        <param name="min">"${radians(-108)}"</param>
+        <param name="max">"${radians(113)}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="elbow">
+      <command_interface name="position">
+        <param name="min">"${radians(-108)}"</param>
+        <param name="max">"${radians(93)}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="wrist_angle">
+      <command_interface name="position">
+        <param name="min">"${radians(-100)}"</param>
+        <param name="max">"${radians(123)}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="wrist_rotate">
+      <command_interface name="position">
+        <param name="min">"${-pi + pi_offset}"</param>
+        <param name="max">"${pi - pi_offset}"</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="left_finger">
+      <command_interface name="position">
+        <param name="min">0.015</param>
+        <param name="max">-0.015</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+
+  </ros2_control>
 </robot>

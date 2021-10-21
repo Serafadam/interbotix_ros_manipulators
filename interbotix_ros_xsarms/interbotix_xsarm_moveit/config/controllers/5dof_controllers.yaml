@@ -1,9 +1,20 @@
-controller_list:
-  - name: "arm_controller"
-    action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
-    joints: [waist, shoulder, elbow, wrist_angle, wrist_rotate]
-  - name: "gripper_controller"
-    action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
-    joints: [left_finger, right_finger]
+controller_names:
+  - arm_controller
+  # - gripper_controller
+
+arm_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - waist
+    - shoulder
+    - elbow
+    - wrist_angle
+    - wrist_rotate
+# gripper_controller:
+#   action_ns: follow_joint_trajectory
+#   type: FollowJointTrajectory
+#   default: true
+#   joints:
+#      - left_finger

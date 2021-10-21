@@ -1,16 +1,39 @@
-arm_controller:
-  type: position_controllers/JointTrajectoryController
-  joints:
-    - waist
-    - shoulder
-    - elbow
-    - wrist_angle
-    - wrist_rotate
-  constraints:
-    goal_time: 1
-    stopped_velocity_tolerance: 0.02
-
-gripper_controller:
-  type: position_controllers/JointTrajectoryController
-  joints:
-    - left_finger
+/rx200:
+  controller_manager:
+    ros__parameters:
+      update_rate: 10  # Hz
+      arm_controller:
+        type: joint_trajectory_controller/JointTrajectoryController
+      gripper_controller:
+        type: joint_trajectory_controller/JointTrajectoryController
+      # joint_state_broadcaster:
+      #   type: joint_state_broadcaster/JointStateBroadcaster
+/rx200:
+  arm_controller:
+    ros__parameters:
+      type: FollowJointTrajectory
+      joints:
+        - waist
+        - shoulder
+        - elbow
+        - wrist_angle
+        - wrist_rotate
+      command_interfaces:
+        - position
+      state_interfaces:
+        - position
+      state_publish_rate: 10.0 # Defaults to 50
+      action_monitor_rate: 20.0 # Defaults to 20
+      constraints:
+        stopped_velocity_tolerance: 0.02
+        goal_time: 1.0
+/rx200:
+  gripper_controller:
+    ros__parameters:
+      type: FollowJointTrajectory
+      joints:
+        - left_finger
+      command_interfaces:
+        - position
+      state_interfaces:
+        - position

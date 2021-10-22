@@ -190,7 +190,7 @@ def launch_setup(context, *args, **kwargs):
         "publish_state_updates": True,
         "publish_transforms_updates": True,
     }
-    remappings = [("rx200/get_planning_scene", "/rx200/get_planning_scene")]
+    remappings = [("rx201/get_planning_scene", "/rx201/get_planning_scene")]
 
     # Start the actual move_group node/action server
     run_move_group_node = Node(
@@ -202,7 +202,7 @@ def launch_setup(context, *args, **kwargs):
             {
                 "planning_scene_monitor_options": {
                     "robot_description": "robot_description",
-                    "joint_state_topic": "/rx200/joint_states",
+                    "joint_state_topic": "/rx201/joint_states",
                 }
             },
             robot_description,

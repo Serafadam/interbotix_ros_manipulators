@@ -149,7 +149,7 @@ def launch_setup(context, *args, **kwargs):
     return [
       controller_manager,
       spawn_arm_controller,
-      spawn_gripper_controller,
+    #   spawn_gripper_controller,
     #   control,  
     ]
 

@@ -190,7 +190,7 @@
   <joint name="wrist_rotate" type="revolute">
     <axis xyz="0 0 1"/>
     <limit effort="1" lower="${radians(-100)}" upper="${radians(100)}" velocity="${pi}"/>
-    <origin rpy="3.1416 0 3.1416" xyz="0.00015336 -0.0542 0"/>
+    <origin rpy="3.1416 3.1416 3.1416" xyz="0.00015336 -0.0542 0"/>
     <parent link="$(arg robot_name)/wrist_link"/>
     <child link="$(arg robot_name)/gripper_link"/>
     <dynamics friction="0.1"/>

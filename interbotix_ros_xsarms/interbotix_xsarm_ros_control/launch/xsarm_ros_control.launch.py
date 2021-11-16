@@ -135,14 +135,14 @@ def launch_setup(context, *args, **kwargs):
 
     spawn_arm_controller = Node(
                 package="controller_manager",
-                executable="spawner",
+                executable="spawner.py",
                 arguments=["arm_controller", "-c", f"/{robot_name.perform(context)}/controller_manager"],
                 )
     
 
     spawn_gripper_controller = Node(
                 package="controller_manager",
-                executable="spawner",
+                executable="spawner.py",
                 arguments=["gripper_controller", "-c", f"/{robot_name.perform(context)}/controller_manager"],
                 )
 

@@ -58,11 +58,11 @@ repositories:
   ros2_control:
     type: git
     url: https://github.com/ros-controls/ros2_control
-    version: 0.8.0
+    version: 1.1.0
   ros2_controllers:
     type: git
     url: https://github.com/ros-controls/ros2_controllers
-    version: 0.5.0
+    version: 1.1.0
   interbotix_ros_toolboxes:
     type: git
     url: https://github.com/Serafadam/interbotix_ros_toolboxes.git

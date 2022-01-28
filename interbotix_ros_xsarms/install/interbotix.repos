@@ -86,7 +86,7 @@ repositories:
   realtime_tools:
     type: git
     url: https://github.com/ros-controls/realtime_tools.git
-    version: ros2_devel
+    version: foxy-devel
   control_msgs:
     type: git
     url: https://github.com/ros-controls/control_msgs.git
